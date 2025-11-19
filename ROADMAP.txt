@@ -1,0 +1,287 @@
+🚀 Roadmap de développement – Plateforme LMS Pompiers
+
+🧱 Phase 1 — Foundation & Setup (Semaine 1 à 2)
+
+Objectif : mettre en place l’infrastructure technique et la base du projet Next.js.
+
+✅ Étapes :
+
+Initialisation du projet
+
+Next.js 15
+
+TypeScript configuration
+
+Tailwind + Shadcn UI installés
+
+ESLint + Prettier + Husky + lint-staged
+
+Configuration de l’authentification
+
+Better-Auth intégré (Email OTP + GitHub OAuth)
+
+Pages : login, register, forgot, magic link
+
+Mise en place de la base de données
+
+Neon Postgres
+
+Schéma Prisma v1 :
+
+User
+
+Course
+
+Module
+
+Lesson
+
+Progress
+
+Uploads
+
+Déploiement initial
+
+Projet déployé sur Vercel
+
+URL stable pour la suite du dev
+
+🎨 Phase 2 — UI/UX & Design System (Semaine 2 à 3)
+
+Objectif : poser les fondations visuelles et l’ambiance NeoBrutalism.
+
+✅ Étapes :
+
+Charte graphique NeoBrutalism + tokens Tailwind
+
+Composants globaux :
+
+Navbar
+
+Sidebar
+
+Buttons
+
+Cards
+
+Badges
+
+Modals
+
+Thème clair/sombre
+
+Templates (Admin / Client / Marketing)
+
+🏠 Phase 3 — Pages publiques & Marketing (Semaine 3 à 4)
+
+Objectif : créer une belle interface d’accueil pour présenter la plateforme.
+
+Pages :
+
+Home (Hero, cours mis en avant, CTA)
+
+Page catalogue des cours
+
+Page d’un cours (version publique : description, prévisualisation)
+
+Page de pricing (Stripe)
+
+🧑‍💼 Phase 4 — Admin Dashboard (Semaine 4 à 6)
+
+Objectif : créer le panneau d'administration complet.
+
+Fonctionnalités :
+
+Gestion des cours
+
+CRUD cours
+
+Upload image de couverture (S3 signed URL)
+
+Éditeur de description (rich text)
+
+Modules & Leçons
+
+Drag & drop structure
+
+Upload vidéo S3 (progress bar)
+
+Éditeur de texte
+
+Activation/désactivation
+
+Statistiques
+
+Nombre d’apprenants
+
+Progressions globales
+
+Graphiques (d3 ou chart.js)
+
+Gestion des utilisateurs
+
+Liste des comptes
+
+Rôles (admin / apprenant)
+
+👤 Phase 5 — Client Dashboard (Semaine 6 à 8)
+
+Objectif : offrir une expérience premium aux apprenants.
+
+Fonctionnalités :
+
+Tableau de bord
+
+Cours en cours
+
+Pourcentage de progression
+
+Dernière vidéo vue
+
+Page d’un cours (version apprenant)
+
+Sidebar listant les leçons
+
+Lecteur vidéo personnalisé
+
+Suivi automatique : “leçon terminée”
+
+Notes privées
+
+Ressources téléchargeables
+
+Zone de dépôt personnalisée
+
+Upload de fichiers (S3)
+
+Historique des dépôts
+
+📊 Phase 6 — Analytics & Suivi (Semaine 8 à 9)
+
+Objectif : implementer des statistiques pertinentes.
+
+Statistiques apprenant :
+
+Temps passé
+
+Modules terminés
+
+Graphiques d’évolution
+
+Statistiques admin :
+
+Nombre d’inscriptions
+
+Taux de complétion
+
+Engagement vidéo
+
+💳 Phase 7 — Paiements Stripe (Semaine 9 à 10)
+
+Objectif : rendre la plateforme monétisable.
+
+À intégrer :
+
+Stripe Checkout
+
+Webhooks (paiement réussi → débloquer cours)
+
+Paiement unique ou récurrent
+
+Factures PDF automatiques
+
+🛡️ Phase 8 — Security Hardening (Semaine 10 à 11)
+
+Objectif : sécuriser la plateforme niveau production.
+
+Actions :
+
+Arcjet (XSS, SQL injection, rate limit)
+
+Validation côté serveur systématique (Zod)
+
+Analyse de rôles RBAC
+
+Audit Prisma
+
+Audit API routes Next.js
+
+📱 Phase 9 — Mobile & Performance (Semaine 11 à 12)
+
+Objectif : optimiser pour tous les écrans et pour un usage pompier.
+
+À faire :
+
+Adaptive UI sur smartphone
+
+Lazy loading intelligent
+
+Optimisation vidéo
+
+Amélioration lighthouse (95+)
+
+Mode offline partiel (bonus)
+
+🧪 Phase 10 — Tests & QA (Semaine 12 à 13)
+
+Objectif : assurer la qualité finale.
+
+Tests :
+
+Tests unitaires (Vitest)
+
+Tests E2E (Playwright)
+
+Tests utilisateurs
+
+Correction des bugs
+
+🎉 Phase 11 — Lancement Officiel (Semaine 14)
+
+Objectif : mise en production et monitoring.
+
+Actions :
+
+Monitoring (Sentry)
+
+Logs structured (Vercel + Logtail)
+
+Mise en production finale
+
+Documentation utilisateur
+
+Formation admin
+
+🧩 Phase 12 — Fonctionnalités Bonus (Post lancement)
+
+Gamification
+
+Certification PDF
+
+Quiz intelligent
+
+Mode offline complet
+
+IA pour résumés de cours
+
+Génération auto de quiz via IA
+
+Équipe multi-admin
+
+Notifications en temps réel
+
+🏁 Résumé visuel
+
+Base technique → 2 semaines
+
+UI/UX + pages publiques → 2 semaines
+
+Admin → 2 semaines
+
+Client → 2 semaines
+
+Analytics + Stripe + Sécurité → 3 semaines
+
+QA + Lancement → 1-2 semaines
+
+👉 Total estimé : 14 semaines (~3 mois et demi) pour une version professionnelle.
