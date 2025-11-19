@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modèle User - Comptes utilisateurs
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(LEARNER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  progress Progress[]
+  uploads  Upload[]
+
+  @@map("users")
+}
+
+// Modèle Course - Cours
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  coverImage  String?
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  modules Module[]
+
+  @@map("courses")
+}
+
+// Modèle Module - Modules de cours
+model Module {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  order       Int
+  courseId    String
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  course  Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+
+  @@map("modules")
+}
+
+// Modèle Lesson - Leçons
+model Lesson {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  videoUrl    String?
+  content     String?  @db.Text
+  order       Int
+  moduleId    String
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  module   Module     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress Progress[]
+
+  @@map("lessons")
+}
+
+// Modèle Progress - Suivi de progression
+model Progress {
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  isCompleted Boolean  @default(false)
+  percentage  Int      @default(0)
+  lastWatched Int      @default(0) // Position en secondes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@map("progress")
+}
+
+// Modèle Upload - Fichiers uploadés
+model Upload {
+  id        String     @id @default(cuid())
+  fileName  String
+  fileUrl   String
+  fileSize  Int
+  mimeType  String
+  userId    String
+  type      UploadType
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("uploads")
+}
+
+// Énumérations
+enum Role {
+  ADMIN
+  LEARNER
+}
+
+enum UploadType {
+  VIDEO
+  DOCUMENT
+  IMAGE
+  OTHER
+}
